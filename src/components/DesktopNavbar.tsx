@@ -52,8 +52,8 @@ const DesktopNavbar = () => {
 
         </>
       ) : (
-        <><Button variant="secondary" onClick={handleSignIn} >Sign In</Button>
-          <Button variant="secondary" onClick={handleSignUp}>Sign Up</Button>
+        <><Button variant="outline" onClick={handleSignIn} >Sign In</Button>
+          <Button variant="outline" onClick={handleSignUp}>Sign Up</Button>
           <ModeToggle />
         </>
 

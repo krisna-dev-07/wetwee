@@ -170,6 +170,7 @@ export default function SignUpForm() {
                         </Button>
                     </form>
                 </Form>
+                
                 <div className="text-center mt-4">
                     <p>
                         Already a member?{' '}

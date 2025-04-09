@@ -17,7 +17,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signInSchema } from '@/schemas/signInschema';
 import { toast } from "sonner"
-
+import { Separator } from '@/components/ui/separator';
+import { FaGithubSquare } from "react-icons/fa";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -41,22 +42,37 @@ export default function SignInForm() {
     if (result?.error) {
       if (result.error === 'CredentialsSignin') {
         toast.error("SignUp Failed", {
-            description: result.error,
-            duration: 5000
+          description: result.error,
+          duration: 5000
         })
       }
-      } else {
-        toast.success(result?.status, {
-            description: 'You will be redirected to dashboard ',
-            duration: 3000
-        })
-        
+    } else {
+      toast.success(result?.status, {
+        description: 'You will be redirected to dashboard ',
+        duration: 3000
+      })
+
     }
 
     if (result?.url) {
       router.replace('/dashboard');
     }
   };
+
+  const handleGitHubSignIn = async () => {
+    const result = await signIn('github', {
+      redirect: false,
+      callbackUrl: '/dashboard'
+    });
+
+    if (result?.error) {
+      toast.error("GitHub Login Failed", {
+        description: result.error,
+        duration: 5000
+      });
+    }
+  };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
@@ -94,6 +110,21 @@ export default function SignInForm() {
             <Button className='w-full bg-black text-white' type="submit">Sign In</Button>
           </form>
         </Form>
+        <div className="flex items-center my-6">
+          <Separator className="flex-1 " />
+          <span className="mx-4 text-sm text-black">OR</span>
+          <Separator className="flex-1" />
+        </div>
+
+        <Button
+          onClick={handleGitHubSignIn}
+          className="w-full bg-gray-900 text-white hover:bg-gray-700"
+          variant="default"
+        >
+          <FaGithubSquare className="mr-2 h-5 w-5 " />
+          Continue with GitHub
+        </Button>
+
         <div className="text-center mt-4 text-black">
           <p>
             Not a member yet?{' '}

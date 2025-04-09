@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import DesktopNavbar from './DesktopNavbar'
 import MobileNavbar from './MobileNavbar'
+import Image from 'next/image'
 
 const Navbar = () => {
  
@@ -11,7 +12,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <Link href="/" className="text-xl font-bold text-primary font-mono tracking-wider">
-                  Wetweet
+               Twix
                 </Link>
               </div>
     
