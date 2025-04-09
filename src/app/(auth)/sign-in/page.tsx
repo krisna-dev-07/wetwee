@@ -31,12 +31,13 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    console.log(data)
     const result = await signIn('credentials', {
       redirect: false,
       identifier: data.identifier,
       password: data.password,
     });
-
+    console.log(result?.error)
     if (result?.error) {
       if (result.error === 'CredentialsSignin') {
         toast.error("SignUp Failed", {
@@ -46,7 +47,7 @@ export default function SignInForm() {
       }
       } else {
         toast.success(result?.status, {
-            description: 'You will be redirected to verification page',
+            description: 'You will be redirected to dashboard ',
             duration: 3000
         })
         

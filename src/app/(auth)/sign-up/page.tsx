@@ -18,7 +18,7 @@ export default function SignUpForm() {
     const [username, setUserName] = useState('')
     const [usernameMessage, setUsernameMessage] = useState('')
     const [isCheckingUsername, setisCheckingUsername] = useState(false)
-    const [isSubmiiting, setisSubmiiting] = useState(false)
+    const [isSubmiiting, setisSubmiting] = useState(false)
     const debounced = useDebounceCallback(setUserName, 500)
 
 
@@ -65,7 +65,7 @@ export default function SignUpForm() {
 
     const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
         console.log("Form submitted with data:", data);
-        setisSubmiiting(true)
+        setisSubmiting(true)
 
         try {
 
@@ -77,7 +77,7 @@ export default function SignUpForm() {
             })
 
             // redirect to verify page 
-            router.replace(`/verify/${username}`);
+            router.replace(`/verifycode/${username}`);
         } catch (error) {
             console.log("Error in signup of user", error);
             const axiosError = error as AxiosError<ApiResponse>
@@ -88,7 +88,7 @@ export default function SignUpForm() {
                 duration: 5000
             })
         } finally {
-            setisSubmiiting(false)
+            setisSubmiting(false)
         }
 
     }
